@@ -15,6 +15,7 @@
 		AEA7063E2649EA0E0099EDDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEA7063C2649EA0E0099EDDC /* LaunchScreen.storyboard */; };
 		AEA706492649EA0F0099EDDC /* AnimatePathsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA706482649EA0F0099EDDC /* AnimatePathsTests.swift */; };
 		AEA706542649EA0F0099EDDC /* AnimatePathsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA706532649EA0F0099EDDC /* AnimatePathsUITests.swift */; };
+		AEA706652649EA250099EDDC /* AnimatePathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA706642649EA250099EDDC /* AnimatePathsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		AEA7064F2649EA0F0099EDDC /* AnimatePathsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnimatePathsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEA706532649EA0F0099EDDC /* AnimatePathsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatePathsUITests.swift; sourceTree = "<group>"; };
 		AEA706552649EA0F0099EDDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEA706642649EA250099EDDC /* AnimatePathsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatePathsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				AEA706312649EA0B0099EDDC /* AppDelegate.swift */,
 				AEA706332649EA0B0099EDDC /* SceneDelegate.swift */,
 				AEA706352649EA0B0099EDDC /* ViewController.swift */,
+				AEA706642649EA250099EDDC /* AnimatePathsView.swift */,
 				AEA706372649EA0B0099EDDC /* Main.storyboard */,
 				AEA7063A2649EA0E0099EDDC /* Assets.xcassets */,
 				AEA7063C2649EA0E0099EDDC /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 				AEA706362649EA0B0099EDDC /* ViewController.swift in Sources */,
 				AEA706322649EA0B0099EDDC /* AppDelegate.swift in Sources */,
 				AEA706342649EA0B0099EDDC /* SceneDelegate.swift in Sources */,
+				AEA706652649EA250099EDDC /* AnimatePathsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
