@@ -22,4 +22,10 @@ extension CGRect {
     var middleBottom:   CGPoint     { return CGPoint(x: midX, y: maxY) }
     var middleLeft:     CGPoint     { return CGPoint(x: minX, y: midY) }
     var centerpoints:   [CGPoint]   { return [middleTop, middleRight, middleBottom, middleLeft] }
+
+    init(center: CGPoint, size: CGSize) {
+        self.init()
+        origin = CGPoint(x: center.x - size.width / 2, y: center.y - size.height / 2)
+        self.size = size
+    }
 }
