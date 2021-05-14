@@ -41,17 +41,20 @@ class ViewController: UIViewController {
             // Create the left rectangle of the pause symbol. We do this by moving to the top left corner, then adding lines clockwise
             // for the remaining 3 points. Finally we call closeSubpath() to turn the rectangle into a closed path.
             // We could also create the 2 rectangles using the CGMutablePath method `addRect(_:transform:)` and the result would be the same.
-            pausePath.move(to: leftRectOrigin)
-            pausePath.addLine(to: CGPoint(x: leftBarRect.maxX, y: leftBarRect.origin.y ))
-            pausePath.addLine(to: CGPoint(x: leftBarRect.maxX, y: leftBarRect.maxY ))
-            pausePath.addLine(to: CGPoint(x: leftBarRect.origin.x, y: leftBarRect.maxY ))
+
+            var leftBarRectCorners = leftBarRect.corners
+            pausePath.move(to: leftBarRectCorners.removeFirst())
+            while !leftBarRectCorners.isEmpty {
+                pausePath.addLine(to: leftBarRectCorners.removeFirst())
+            }
             pausePath.closeSubpath()
 
             // Create the right side rectangle of the pause symbol
-            pausePath.move(to: rightBarRect.origin)
-            pausePath.addLine(to: CGPoint(x: rightBarRect.maxX, y: rightBarRect.origin.y ))
-            pausePath.addLine(to: CGPoint(x: rightBarRect.maxX, y: rightBarRect.maxY ))
-            pausePath.addLine(to: CGPoint(x: rightBarRect.origin.x, y: rightBarRect.maxY ))
+            var rightBarRectCorners = rightBarRect.corners
+            pausePath.move(to: rightBarRectCorners.removeFirst())
+            while !rightBarRectCorners.isEmpty {
+                pausePath.addLine(to: rightBarRectCorners.removeFirst())
+            }
             pausePath.closeSubpath()
         } else {
             // This code would have exactly the same result as the code above that draws the rectangle one line segment at a time.
