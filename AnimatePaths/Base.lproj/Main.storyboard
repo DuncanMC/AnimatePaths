@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uwg-gl-LYP" customClass="AnimatePathsView" customModule="AnimatePaths" customModuleProvider="target">
-                                <rect key="frame" x="7" y="94" width="400" height="400"/>
+                                <rect key="frame" x="5" y="94" width="400" height="400"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="500" constant="300" id="K86-by-45t"/>
@@ -25,11 +25,14 @@
                                     <constraint firstAttribute="width" secondItem="Uwg-gl-LYP" secondAttribute="height" multiplier="1:1" id="jaA-EP-yYT"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="1"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" systemColor="systemGray3Color"/>
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -48,9 +51,11 @@
                             <constraint firstItem="WSS-9b-mgi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6nv-xX-VX6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="WSS-9b-mgi" secondAttribute="bottom" id="7rM-bG-wN0"/>
                             <constraint firstItem="Uwg-gl-LYP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="8Oo-b3-wF3"/>
+                            <constraint firstItem="Uwg-gl-LYP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="Cjj-gj-wB3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Uwg-gl-LYP" secondAttribute="trailing" id="GQO-hk-diP"/>
                             <constraint firstItem="Uwg-gl-LYP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="HXg-Vv-g36"/>
-                            <constraint firstItem="Uwg-gl-LYP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" priority="500" id="VES-ey-ISG"/>
+                            <constraint firstItem="Uwg-gl-LYP" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="trailing" priority="500" id="VES-ey-ISG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Uwg-gl-LYP" secondAttribute="trailing" constant="5" id="Vs7-CG-6DI"/>
                             <constraint firstItem="Uwg-gl-LYP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gyk-3H-Fte"/>
                         </constraints>
                     </view>
@@ -66,9 +71,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

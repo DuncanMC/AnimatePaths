@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		AE67A2D5264E03F2004F9020 /* CGRect+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE67A2D4264E03F2004F9020 /* CGRect+helpers.swift */; };
 		AE67A2DA264E0A80004F9020 /* CALayer+UIColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE67A2D9264E0A80004F9020 /* CALayer+UIColors.swift */; };
-		AE67A2F6264E1073004F9020 /* UIView+borderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE67A2F5264E1073004F9020 /* UIView+borderColor.swift */; };
+		AE67A2F6264E1073004F9020 /* UIView+layerProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE67A2F5264E1073004F9020 /* UIView+layerProperties.swift */; };
 		AEA706322649EA0B0099EDDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA706312649EA0B0099EDDC /* AppDelegate.swift */; };
 		AEA706342649EA0B0099EDDC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA706332649EA0B0099EDDC /* SceneDelegate.swift */; };
 		AEA706362649EA0B0099EDDC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA706352649EA0B0099EDDC /* ViewController.swift */; };
@@ -41,7 +41,7 @@
 /* Begin PBXFileReference section */
 		AE67A2D4264E03F2004F9020 /* CGRect+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+helpers.swift"; sourceTree = "<group>"; };
 		AE67A2D9264E0A80004F9020 /* CALayer+UIColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+UIColors.swift"; sourceTree = "<group>"; };
-		AE67A2F5264E1073004F9020 /* UIView+borderColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+borderColor.swift"; sourceTree = "<group>"; };
+		AE67A2F5264E1073004F9020 /* UIView+layerProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+layerProperties.swift"; sourceTree = "<group>"; };
 		AEA7062E2649EA0B0099EDDC /* AnimatePaths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimatePaths.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEA706312649EA0B0099EDDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEA706332649EA0B0099EDDC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 				AEA706352649EA0B0099EDDC /* ViewController.swift */,
 				AE67A2D4264E03F2004F9020 /* CGRect+helpers.swift */,
 				AE67A2D9264E0A80004F9020 /* CALayer+UIColors.swift */,
-				AE67A2F5264E1073004F9020 /* UIView+borderColor.swift */,
+				AE67A2F5264E1073004F9020 /* UIView+layerProperties.swift */,
 				AEA706642649EA250099EDDC /* AnimatePathsView.swift */,
 				AEA706372649EA0B0099EDDC /* Main.storyboard */,
 				AEA7063A2649EA0E0099EDDC /* Assets.xcassets */,
@@ -275,7 +275,7 @@
 				AEA706322649EA0B0099EDDC /* AppDelegate.swift in Sources */,
 				AE67A2DA264E0A80004F9020 /* CALayer+UIColors.swift in Sources */,
 				AEA706342649EA0B0099EDDC /* SceneDelegate.swift in Sources */,
-				AE67A2F6264E1073004F9020 /* UIView+borderColor.swift in Sources */,
+				AE67A2F6264E1073004F9020 /* UIView+layerProperties.swift in Sources */,
 				AEA706652649EA250099EDDC /* AnimatePathsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

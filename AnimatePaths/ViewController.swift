@@ -5,6 +5,7 @@
 //  Created by Duncan Champney on 5/10/21.
 //
 
+import CoreGraphics
 import UIKit
 
 class ViewController: UIViewController {
@@ -12,6 +13,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pathsView.defaultStepPause = 0
+        pathsView.defaultTimingFunction =  CAMediaTimingFunctionName.linear
+        pathsView.defaultStepDuration = 0.7
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -22,74 +26,64 @@ class ViewController: UIViewController {
         setupAnimationPaths()
     }
 
+    func intertwinePointsArrays(array1: [CGPoint], array2: [CGPoint]) -> [CGPoint] {
+        return zip(array1, array2).flatMap {[$0, $1]}
+    }
+
+    func pathForRects(cornersRect: CGRect, sidesRect: CGRect) -> CGPath {
+        let path = CGMutablePath()
+        var points = intertwinePointsArrays(array1: cornersRect.corners, array2: sidesRect.centerpoints)
+        path.move(to: points.removeFirst())
+        while !points.isEmpty {
+            path.addLine(to: points.removeFirst())
+        }
+        path.closeSubpath()
+        return path
+    }
+
     /**
      Install an array of PathStep objects containing a pause button shape and a play button shape into our `pathsView` `AnimatePathsView`
      The shapes are centered in the view.
     */
     func setupAnimationPaths() {
 
-        //-----------------------------
-        // Create a path that draws a pause symbol (two vertical bars) centered in the pathsView
-        let pausePath =  CGMutablePath()
-        let viewMiddleX = pathsView.bounds.midX
-        let viewMiddleY = pathsView.bounds.midY
-        let pauseBarSize = CGSize(width: 20, height: 90)
-        let leftRectOrigin = CGPoint(x: viewMiddleX - pauseBarSize.width * 3 / 2, y: viewMiddleY - pauseBarSize.height / 2 )
-        let leftBarRect = CGRect(origin: leftRectOrigin, size: pauseBarSize)
-        let rightBarRect = leftBarRect.offsetBy(dx: pauseBarSize.width * 2, dy: 0)
-        if true {
-            // Create the left rectangle of the pause symbol. We do this by moving to the top left corner, then adding lines clockwise
-            // for the remaining 3 points. Finally we call closeSubpath() to turn the rectangle into a closed path.
-            // We could also create the 2 rectangles using the CGMutablePath method `addRect(_:transform:)` and the result would be the same.
+        var paths = [PathStep]()
+        var smallRect: CGRect
+        var largeRect: CGRect
 
-            var leftBarRectCorners = leftBarRect.corners
-            pausePath.move(to: leftBarRectCorners.removeFirst())
-            while !leftBarRectCorners.isEmpty {
-                pausePath.addLine(to: leftBarRectCorners.removeFirst())
-            }
-            pausePath.closeSubpath()
+        let viewCenter = CGPoint(x: pathsView.bounds.width/2, y: pathsView.bounds.height/2)
+        smallRect = CGRect(center: viewCenter, size: CGSize(width: 0, height: 0))
+        largeRect = CGRect(center: viewCenter, size: CGSize(width: 10, height: 10))
+        paths.append(PathStep(path:pathForRects(cornersRect: smallRect, sidesRect: smallRect)))
 
-            // Create the right side rectangle of the pause symbol
-            var rightBarRectCorners = rightBarRect.corners
-            pausePath.move(to: rightBarRectCorners.removeFirst())
-            while !rightBarRectCorners.isEmpty {
-                pausePath.addLine(to: rightBarRectCorners.removeFirst())
-            }
-            pausePath.closeSubpath()
-        } else {
-            // This code would have exactly the same result as the code above that draws the rectangle one line segment at a time.
-            pausePath.addRect(leftBarRect)
-            pausePath.addRect(rightBarRect)
-        }
+        paths.append(PathStep(path:pathForRects(cornersRect: smallRect, sidesRect: largeRect)))
+//        paths.append(PathStep(path:pathForRects(cornersRect: largeRect, sidesRect: smallRect),stepPause: 0.5))
 
-        //--------------------------
-        // Create a path that draws a play symbol triangle, but as 2 joined quadralaterals where the right quadralateral
-        // has 2 of it's points at the same position so it is drawn in the shape of a triangle.
-        let playPath =  CGMutablePath()
-        let playPathHeight: CGFloat = 80.0
-        let playPathWidth: CGFloat = 76.0
 
-        // Create the left quadralateral as a trapezoid
-        playPath.move(   to: CGPoint(x: viewMiddleX - playPathWidth / 2, y: viewMiddleY - playPathHeight / 2))
-        playPath.addLine(to: CGPoint(x: viewMiddleX, y: viewMiddleY - playPathHeight / 4 ))
-        playPath.addLine(to: CGPoint(x: viewMiddleX, y: viewMiddleY + playPathHeight / 4 ))
-        playPath.addLine(to: CGPoint(x: viewMiddleX - playPathWidth / 2, y: viewMiddleY + playPathHeight / 2 ))
-        playPath.closeSubpath()
+        smallRect = CGRect(center: viewCenter, size: CGSize(width: 10, height: 10))
+        paths.append(PathStep(path:pathForRects(cornersRect: smallRect, sidesRect: largeRect)))
 
-        // Create the right quadralateral with it's right 2 points together, so it draws as a triangle.
-        playPath.move(to: CGPoint(x: viewMiddleX, y: viewMiddleY - playPathHeight / 4 ))
+        largeRect = CGRect(center: viewCenter, size: CGSize(width: 100, height: 100))
 
-        //The right 2 points are the same, turning the quadralateral into a triangle
-        playPath.addLine(to: CGPoint(x: viewMiddleX + playPathWidth / 2, y: viewMiddleY))
-        playPath.addLine(to: CGPoint(x: viewMiddleX + playPathWidth / 2, y: viewMiddleY))
+        paths.append(PathStep(path:pathForRects(cornersRect: smallRect, sidesRect: largeRect)))
+        let path = pathForRects(cornersRect: largeRect, sidesRect: smallRect)
+        paths.append(PathStep(path: path))
 
-        playPath.addLine(to: CGPoint(x: viewMiddleX, y: viewMiddleY + playPathHeight / 4))
-        playPath.closeSubpath()
+        smallRect = CGRect(center: viewCenter, size: CGSize(width: 100, height: 100))
+        paths.append(PathStep(path:pathForRects(cornersRect: smallRect, sidesRect: largeRect)))
 
-        pathsView.paths = [
-            PathStep(path: pausePath),
-            PathStep(path: playPath)
-        ]
+        let viewSmallest = min(pathsView.bounds.width, pathsView.bounds.height) - 5
+        largeRect = CGRect(center: viewCenter, size: CGSize(width: viewSmallest, height: viewSmallest))
+        paths.append(PathStep(path:pathForRects(cornersRect: smallRect, sidesRect: largeRect)))
+
+        paths.append(PathStep(path:pathForRects(cornersRect: largeRect, sidesRect: smallRect)))
+
+        smallRect = CGRect(center: viewCenter, size: CGSize(width: viewSmallest, height: viewSmallest))
+        paths.append(PathStep(path:pathForRects(cornersRect: smallRect, sidesRect: largeRect)))
+
+        paths.append(contentsOf: paths.reversed())
+
+        pathsView.paths = paths
     }
 
     @IBAction func handleAnimateButton(_ sender: Any) {

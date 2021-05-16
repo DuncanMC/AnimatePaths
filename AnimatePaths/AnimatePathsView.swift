@@ -31,6 +31,7 @@ class AnimatePathsView: UIView {
         }
     }
 
+    var defaultTimingFunction = CAMediaTimingFunctionName.easeInEaseOut
     public var defaultStepDuration: Double = 0.5
     public var defaultStepPause: Double = 0.2
 
@@ -74,7 +75,7 @@ class AnimatePathsView: UIView {
             let stepDuration = paths[nextindex].stepDuration ?? defaultStepDuration
             pathAnimation.duration = stepDuration
             pathAnimation.beginTime = startTime
-            pathAnimation.timingFunction = CAMediaTimingFunction(name: paths[1].timingFunction ?? CAMediaTimingFunctionName.easeInEaseOut)
+            pathAnimation.timingFunction = CAMediaTimingFunction(name: paths[1].timingFunction ?? defaultTimingFunction)
             pathAnimation.fromValue = path.path
             pathAnimation.isRemovedOnCompletion = false
             pathAnimation.fillMode = CAMediaTimingFillMode.forwards
